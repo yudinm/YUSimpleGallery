@@ -15,7 +15,7 @@ class YUSimpleGalleryFlowLayout: UICollectionViewFlowLayout {
         
         minimumLineSpacing = 2
         minimumInteritemSpacing = 2
-        sectionInset = UIEdgeInsets.zero //UIEdgeInsetsMake(1, 1, 1, 1)
+        sectionInset = UIEdgeInsetsMake(minimumLineSpacing, minimumLineSpacing, minimumLineSpacing, minimumLineSpacing)
         updateLayout(collectionView: collectionView, isPortrait: collectionView.bounds.height > collectionView.bounds.width)
     }
     

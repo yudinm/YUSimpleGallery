@@ -21,6 +21,7 @@ class YUSimpleGallery: UICollectionViewController {
         super.viewDidLoad()
         
         self.collectionView?.collectionViewLayout = YUSimpleGalleryFlowLayout(collectionView: collectionView!)
+        self.collectionView?.allowsMultipleSelection = true
     }
 
 
@@ -43,5 +44,16 @@ extension YUSimpleGallery {
         cell.configure(image: image)
         return cell        
     }
+}
+
+extension YUSimpleGallery {
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        coordinator.animate(alongsideTransition: { context in
+            let isPortrait = size.height > size.width
+            let layout = self.collectionView?.collectionViewLayout as! YUSimpleGalleryFlowLayout
+            layout.updateLayout(collectionView: self.collectionView!, isPortrait: isPortrait)
+        }, completion: nil)
+    }
 }
